@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import Nav from '@/components/Nav.vue'
 
 </script>
 
 <template>
   <div>
-    Hello world
+    <Nav/>
   </div>
   
 </template>
