@@ -20,9 +20,11 @@ app.use(PrimeVue, {
 import Button from "primevue/button";
 import OverlayBadge from 'primevue/overlaybadge';
 import MultiSelect from 'primevue/multiselect';
+import InputNumber from 'primevue/inputnumber';
 
 app.component("Button", Button)
 app.component("OverlayBadge", OverlayBadge)
 app.component("MultiSelect", MultiSelect)
+app.component("InputNumber", InputNumber)
 
 app.mount('#app');
