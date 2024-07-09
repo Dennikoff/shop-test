@@ -1,9 +1,18 @@
 <template>
   <nav id="navigation">
-    <div class="wrapper">
-      <RouterLink :to="{}">
-        <img src="@/assets/logo.svg" class="logo">
-      </RouterLink>
+    <div class="wrapper nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <RouterLink :to="{name: 'home'}">
+            <img src="@/assets/logo.svg" class="logo">
+          </RouterLink>
+        </li>
+        <li class="nav-item">
+          <RouterLink :to="{name: 'bucket'}">
+            <img src="@/assets/shopping.svg" class="logo">
+          </RouterLink>
+        </li>
+      </ul>
     </div>
   </nav>
 </template>
@@ -23,5 +32,10 @@ import { RouterLink } from 'vue-router'
   
   .logo {
     height: 40px;
+  }
+
+  .nav-list {
+    display: flex;
+    justify-content: space-between;
   }
 </style>
