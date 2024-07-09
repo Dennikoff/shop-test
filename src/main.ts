@@ -17,8 +17,10 @@ app.use(PrimeVue, {
 })
 
 
-import Button from "primevue/button"
+import Button from "primevue/button";
+import OverlayBadge from 'primevue/overlaybadge';
 
 app.component("Button", Button)
+app.component("OverlayBadge", OverlayBadge)
 
 app.mount('#app');

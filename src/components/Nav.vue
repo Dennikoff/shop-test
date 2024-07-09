@@ -9,7 +9,9 @@
         </li>
         <li class="nav-item">
           <RouterLink :to="{name: 'bucket'}">
-            <img src="@/assets/shopping.svg" class="logo">
+            <OverlayBadge value="0" severity="info">
+              <img src="@/assets/shopping.svg" class="logo">
+            </OverlayBadge>
           </RouterLink>
         </li>
       </ul>
@@ -37,5 +39,6 @@ import { RouterLink } from 'vue-router'
   .nav-list {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 </style>
