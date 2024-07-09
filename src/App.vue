@@ -4,13 +4,15 @@ import Nav from '@/components/Nav.vue'
 </script>
 
 <template>
-  <div>
-    <Nav/>
+  <Nav/>
+  <div class="content">
     <RouterView/>
   </div>
   
 </template>
 
 <style scoped>
-
+.content {
+  flex: 1;
+}
 </style>

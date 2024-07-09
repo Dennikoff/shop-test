@@ -26,7 +26,7 @@ import { RouterLink } from 'vue-router'
 <style scoped>
   .wrapper {
     padding: 2rem;
-    background: black;
+    background: #c1a9a9;
     color: white;
     font-size: 1.25rem;
     font-weight: 700;
