@@ -1,7 +1,7 @@
 <template>
   <div class="main-page">
     <div class="filter-container">
-      <ProductFilter/>
+      <ProductFilter :min="10" :max="255" :cats="[`man's clothes`, 'electronics', 'shooes']"/>
     </div>
     <div class="products-container"></div>
   </div>

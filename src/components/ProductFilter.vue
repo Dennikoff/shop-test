@@ -6,9 +6,7 @@
       <MultiSelect 
         class="multiselect mt-3"
         v-model="selectedOptions" 
-        :options="filterItems" 
-        optionLabel="label" 
-        optionValue="value" 
+        :options="props.cats" 
         :maxSelectedLabels="2"
         placeholder="Выбрать категорию"
       />
@@ -19,36 +17,50 @@
         <li class="col min-price">
           <div class="flex-auto">
             <label for="min-price" class="font-bold block mb-2"> Мин. цена </label>
-            <InputNumber v-model="minPrice" inputId="min-price" fluid />
+            <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.min" :max="maxPrice" />
           </div>
         </li>
         <li class="col max-price">
           <div class="flex-auto">
             <label for="max-price" class="font-bold block mb-2"> Макс. цена </label>
-            <InputNumber v-model="maxPrice" inputId="max-price" fluid />
+            <InputNumber v-model="maxPrice" inputId="max-price" fluid  :min="minPrice" :max="props.max"/>
           </div>
         </li>
       </ul>
     </div>
     <div class="control-container">
-      <Button label="Сброс" severity="warn"/>
+      <Button label="Сброс" severity="warn" @click="resetFilters"/>
       <Button label="Применить"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 
-const filterItems = [
-  { label: 'Кроссовки', value: 'sneakers' },
-  { label: 'Cat2', value: 'cat-2' },
-];
+const props = defineProps<{
+  max: number,
+  min: number,
+  cats: string[],
+}>()
+
 
 const selectedOptions = ref()
 
 const minPrice = ref(0)
 const maxPrice = ref(1000)
+
+function resetFilters() {
+  selectedOptions.value = []
+  minPrice.value = 0
+  maxPrice.value = 1000
+}
+
+onMounted(() => {
+  minPrice.value = props.min
+  maxPrice.value = props.max
+})
+
 
 </script>
 
