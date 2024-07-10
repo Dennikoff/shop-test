@@ -12,6 +12,8 @@ import ProductCard from './ProductCard.vue';
 
 const productStore = useProductStore()
 
+
+
 </script>
 
 <style scoped>

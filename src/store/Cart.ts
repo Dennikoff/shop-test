@@ -21,7 +21,7 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const size = computed(() => {
-    cart.value.length
+    return cart.value.length
   }) 
 
   return {cart, add, remove, includes, size}

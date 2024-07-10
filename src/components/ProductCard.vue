@@ -9,8 +9,15 @@
     </p>
     <Button 
       v-if="!cartStore.includes(props.product.id)"
-      label="Заказать" 
+      label="Добавить в карзину" 
       @click="() => addToCart(props.product)" 
+      fluid
+    />
+    <Button 
+      v-else
+      label="Убрать из корзины" 
+      @click="() => removeFromCart(props.product)" 
+      severity="danger"
       fluid
     />
   </div>
@@ -28,6 +35,10 @@ const props = defineProps<{
 
 function addToCart(product: Product) {
   cartStore.add(product)
+}
+
+function removeFromCart(product: Product) {
+  cartStore.remove(product.id)
 }
 </script>
 
