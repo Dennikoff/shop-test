@@ -20,7 +20,7 @@
               <span class="font-bold">Мин. цена </span> 
               ({{ props.min }}) 
             </label>
-            <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.min" :max="maxPrice" />
+            <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.minPrice" :max="maxPrice" />
           </div>
         </li>
         <li class="col max-price">
@@ -29,7 +29,7 @@
               <span class="font-bold">Макс. цена</span> 
               ({{ props.max }}) 
             </label>
-            <InputNumber v-model="maxPrice" inputId="max-price" fluid  :min="minPrice" :max="props.max"/>
+            <InputNumber v-model="maxPrice" inputId="max-price" fluid  :min="minPrice" :max="props.maxPrice"/>
           </div>
         </li>
       </ul>
@@ -45,8 +45,8 @@
 import {onMounted, ref} from 'vue'
 
 const props = defineProps<{
-  max: number,
-  min: number,
+  minPrice: number,
+  maxPrice: number,
   cats: string[],
 }>()
 
@@ -58,13 +58,13 @@ const maxPrice = ref(1000)
 
 function resetFilters() {
   selectedOptions.value = []
-  minPrice.value = props.min
-  maxPrice.value = props.max
+  minPrice.value = props.minPrice
+  maxPrice.value = props.maxPrice
 }
 
 onMounted(() => {
-  minPrice.value = props.min
-  maxPrice.value = props.max
+  minPrice.value = props.minPrice
+  maxPrice.value = props.maxPrice
 })
 
 

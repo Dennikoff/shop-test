@@ -1,7 +1,7 @@
 <template>
   <div class="main-page">
     <div class="filter-container">
-      <ProductFilter :min="10" :max="255" :cats="[`man's clothes`, 'electronics', 'shooes']"/>
+      <ProductFilter :minPrice="productStore.minPrice" :maxPrice="productStore.maxPrice" :cats="productStore.cats"/>
     </div>
     <div class="products-container"></div>
   </div>
@@ -9,19 +9,9 @@
 
 <script setup lang="ts">
 import ProductFilter from '@/components/ProductFilter.vue'
-import { ref } from 'vue';
-import type {Product} from '@/interface'
-import { getProducts } from '@/api/product';
+import { useProductStore } from '@/store/Product';
 
-const productList = ref<Product[]>([])
-
-async function loadProducts() {
-  
-  let products = await getProducts()
-  productList.value = products
-}
-
-await loadProducts()
+let productStore = useProductStore()
 
 
 </script>

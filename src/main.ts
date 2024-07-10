@@ -5,22 +5,29 @@ import {router} from './router/router'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import 'primeflex/primeflex.css'
-
-
-
-const app = createApp(App);
-app.use(router)
-app.use(PrimeVue, {
-  theme: {
-    preset: Aura
-  }
-})
+import { createPinia } from 'pinia';
 
 
 import Button from "primevue/button";
 import OverlayBadge from 'primevue/overlaybadge';
 import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
+
+
+const app = createApp(App);
+const pinia = createPinia()
+
+
+app.use(router)
+
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura
+  }
+})
+
+app.use(pinia)
+
 
 app.component("Button", Button)
 app.component("OverlayBadge", OverlayBadge)
