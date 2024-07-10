@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <h2>Фильтры</h2>
-    <div class="cat-container mt-4">
+    <div class="cat-container mt-5">
       <h3>Категория</h3>
       <MultiSelect 
         class="multiselect mt-3"
@@ -11,23 +11,22 @@
         placeholder="Выбрать категорию"
       />
     </div>
-    <div class="price-container mt-4">
-      <h3>Цена</h3>
-      <ul class="grid mt-3">
+    <div class="price-container mt-5">
+      <ul class="grid">
         <li class="col min-price">
           <div class="flex-auto">
             <label for="min-price" class="block mb-2"> 
               <span class="font-bold">Мин. цена </span> 
-              ({{ props.min }}) 
+              ({{ props.minPrice }}) 
             </label>
-            <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.minPrice" :max="maxPrice" />
+            <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.minPrice" :max="maxPrice"  />
           </div>
         </li>
         <li class="col max-price">
           <div class="flex-auto">
             <label for="max-price" class="block mb-2">
               <span class="font-bold">Макс. цена</span> 
-              ({{ props.max }}) 
+              ({{ props.maxPrice }}) 
             </label>
             <InputNumber v-model="maxPrice" inputId="max-price" fluid  :min="minPrice" :max="props.maxPrice"/>
           </div>
@@ -42,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 
 const props = defineProps<{
   minPrice: number,
@@ -53,14 +52,27 @@ const props = defineProps<{
 
 const selectedOptions = ref()
 
-const minPrice = ref(0)
-const maxPrice = ref(1000)
+const minPrice = ref()
+const maxPrice = ref()
+
 
 function resetFilters() {
   selectedOptions.value = []
   minPrice.value = props.minPrice
   maxPrice.value = props.maxPrice
 }
+
+watch(() => minPrice.value, () => {
+  if(minPrice.value == undefined) {
+    minPrice.value = props.minPrice
+  }
+})
+
+watch(() => maxPrice.value, () => {
+  if(maxPrice.value == undefined) {
+    maxPrice.value = props.maxPrice
+  }
+})
 
 onMounted(() => {
   minPrice.value = props.minPrice

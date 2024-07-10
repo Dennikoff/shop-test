@@ -13,7 +13,7 @@ import { useProductStore } from '@/store/Product';
 
 let productStore = useProductStore()
 
-
+await productStore.loadData()
 </script>
 
 <style lang="scss" scoped>

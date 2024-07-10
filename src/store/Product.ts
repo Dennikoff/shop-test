@@ -16,7 +16,7 @@ export const useProductStore = defineStore('product', () => {
     let catList: string[] = []
     
     for(let product of productList.value){
-      if(!(product.category in catList)) {
+      if(!catList.includes(product.category)) {
         catList.push(product.category)
       }
     }
@@ -31,7 +31,8 @@ export const useProductStore = defineStore('product', () => {
         tempMinPrice = product.price
       }
     }
-    return tempMinPrice || 0
+    
+    return Math.floor(tempMinPrice || 0)
   })
 
   const maxPrice = computed(() => {
@@ -41,7 +42,7 @@ export const useProductStore = defineStore('product', () => {
         tempMaxPrice = product.price
       }
     }
-    return tempMaxPrice || 0
+    return Math.ceil(tempMaxPrice || 0)
   })
 
   return { productList, loadData, cats, minPrice, maxPrice }
