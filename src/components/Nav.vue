@@ -23,10 +23,10 @@
 import { RouterLink } from 'vue-router'
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .wrapper {
     padding: 2rem;
-    background: #c1a9a9;
+    background: $nav-color;
     color: white;
     font-size: 1.25rem;
     font-weight: 700;

@@ -1,16 +1,18 @@
 <template>
-  <div class="main-page">
-    <div class="filter-container">
+  <div class="main-page flex">
+    <div class="filter-container w-5">
       <ProductFilter :minPrice="productStore.minPrice" :maxPrice="productStore.maxPrice" :cats="productStore.cats"/>
     </div>
-    <div class="products-container"></div>
+    <div class="products-container w-7">
+      <ProductList/>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ProductFilter from '@/components/ProductFilter.vue'
 import { useProductStore } from '@/store/Product';
-
+import ProductList from '@/components/ProductList.vue'
 let productStore = useProductStore()
 
 await productStore.loadData()
@@ -19,13 +21,12 @@ await productStore.loadData()
 <style lang="scss" scoped>
 
 .main-page {
-  border: 1px solid #888;
   height: 100%;
 }
 
 .filter-container {
-  width: 40%;
   height: 100%;
-  border-right: 1px solid #888;
+  width: 40%;
+  border-right: 1px solid $border-color;
 }
 </style>
