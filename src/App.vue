@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import Nav from '@/components/Nav.vue'
-
+import Nav from "@/components/Nav.vue";
 </script>
 
 <template>
-  <Nav/>
+  <Nav />
   <div class="content">
-    <RouterView/>
+    <Suspense>
+      <RouterView />
+      <template #fallback> Loading... </template>
+    </Suspense>
   </div>
-  
 </template>
 
 <style scoped>

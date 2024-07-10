@@ -9,6 +9,21 @@
 
 <script setup lang="ts">
 import ProductFilter from '@/components/ProductFilter.vue'
+import { ref } from 'vue';
+import type {Product} from '@/interface'
+import { getProducts } from '@/api/product';
+
+const productList = ref<Product[]>([])
+
+async function loadProducts() {
+  
+  let products = await getProducts()
+  productList.value = products
+}
+
+await loadProducts()
+
+
 </script>
 
 <style lang="scss" scoped>

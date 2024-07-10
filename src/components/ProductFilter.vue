@@ -16,13 +16,19 @@
       <ul class="grid mt-3">
         <li class="col min-price">
           <div class="flex-auto">
-            <label for="min-price" class="font-bold block mb-2"> Мин. цена </label>
+            <label for="min-price" class="block mb-2"> 
+              <span class="font-bold">Мин. цена </span> 
+              ({{ props.min }}) 
+            </label>
             <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.min" :max="maxPrice" />
           </div>
         </li>
         <li class="col max-price">
           <div class="flex-auto">
-            <label for="max-price" class="font-bold block mb-2"> Макс. цена </label>
+            <label for="max-price" class="block mb-2">
+              <span class="font-bold">Макс. цена</span> 
+              ({{ props.max }}) 
+            </label>
             <InputNumber v-model="maxPrice" inputId="max-price" fluid  :min="minPrice" :max="props.max"/>
           </div>
         </li>
@@ -52,8 +58,8 @@ const maxPrice = ref(1000)
 
 function resetFilters() {
   selectedOptions.value = []
-  minPrice.value = 0
-  maxPrice.value = 1000
+  minPrice.value = props.min
+  maxPrice.value = props.max
 }
 
 onMounted(() => {
