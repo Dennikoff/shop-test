@@ -4,7 +4,7 @@
       <ProductFilter :minPrice="productStore.minPrice" :maxPrice="productStore.maxPrice" :cats="productStore.cats"/>
     </div>
     <div class="products-container w-7">
-      <ProductList/>
+      <ProductList :filters="filter"/>
     </div>
   </div>
 </template>
@@ -13,9 +13,14 @@
 import ProductFilter from '@/components/ProductFilter.vue'
 import { useProductStore } from '@/store/Product';
 import ProductList from '@/components/ProductList.vue'
+import { Filter } from '@/interface';
+import { ref } from 'vue';
 let productStore = useProductStore()
 
 await productStore.loadData()
+
+const filter = ref<Filter>()
+
 </script>
 
 <style lang="scss" scoped>

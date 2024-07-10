@@ -1,6 +1,6 @@
 <template>
   <ul class="grid grid-nogutter">
-    <li class="col-12 md:col-6 lg:col-4 xl:col-3 py-3 flex justify-content-center" v-for="product in productStore.productList" :key="product.id">
+    <li class="col-12 md:col-6 lg:col-4 xl:col-3 py-3 flex justify-content-center" v-for="product in filtredList" :key="product.id">
       <ProductCard :product="product"/>
     </li>
   </ul>
@@ -9,10 +9,25 @@
 <script setup lang="ts">
 import {useProductStore} from '@/store';
 import ProductCard from './ProductCard.vue';
+import { computed } from 'vue';
+import { Filter } from '@/interface/Filter';
 
 const productStore = useProductStore()
 
+const props = defineProps<{
+  filters?: Filter
+}>()
 
+const filtredList = computed(() => {
+  let tempList = productStore.productList
+  if(props.filters) {
+    // @ts-ignore
+    tempList = tempList.filter((val) => val.price > props.filters.minPrice && val.price < props.filters.maxPrice)
+  }
+  
+
+  return tempList
+})
 
 </script>
 
