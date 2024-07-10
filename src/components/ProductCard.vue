@@ -7,16 +7,28 @@
     <p class="card-price">
       {{ product.price }} &#36;
     </p>
-    <Button label="Заказать" fluid/>
+    <Button 
+      v-if="!cartStore.includes(props.product.id)"
+      label="Заказать" 
+      @click="() => addToCart(props.product)" 
+      fluid
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Product } from "@/interface";
+import { useCartStore } from "@/store/Cart";
+
+const cartStore = useCartStore()
 
 const props = defineProps<{
   product: Product;
 }>();
+
+function addToCart(product: Product) {
+  cartStore.add(product)
+}
 </script>
 
 <style lang="scss" scoped>
