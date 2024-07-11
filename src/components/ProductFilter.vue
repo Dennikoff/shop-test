@@ -35,7 +35,7 @@
     </div>
     <div class="control-container">
       <Button label="Сброс" severity="warn" @click="resetFilters"/>
-      <Button label="Применить"/>
+      <Button label="Применить" @click="applyFilters"/>
     </div>
   </div>
 </template>
@@ -49,9 +49,9 @@ const props = defineProps<{
   cats: string[],
 }>()
 
+const emit = defineEmits(['apply'])
 
 const selectedOptions = ref()
-
 const minPrice = ref()
 const maxPrice = ref()
 
@@ -60,6 +60,11 @@ function resetFilters() {
   selectedOptions.value = []
   minPrice.value = props.minPrice
   maxPrice.value = props.maxPrice
+  emit('apply')
+}
+
+function applyFilters() {
+  emit('apply', {minPrice: minPrice.value, maxPrice: maxPrice.value})
 }
 
 watch(() => minPrice.value, () => {

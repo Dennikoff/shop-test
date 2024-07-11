@@ -1,7 +1,7 @@
 <template>
   <div class="main-page flex">
     <div class="filter-container w-5">
-      <ProductFilter :minPrice="productStore.minPrice" :maxPrice="productStore.maxPrice" :cats="productStore.cats"/>
+      <ProductFilter :minPrice="productStore.minPrice" :maxPrice="productStore.maxPrice" :cats="productStore.cats" @apply="applyFilter"/>
     </div>
     <div class="products-container w-7">
       <ProductList :filters="filter"/>
@@ -20,6 +20,10 @@ let productStore = useProductStore()
 await productStore.loadData()
 
 const filter = ref<Filter>()
+
+function applyFilter(filterValue: Filter) {
+  filter.value = filterValue
+}
 
 </script>
 
