@@ -38,7 +38,7 @@
               </td>
               <td>{{ item.product.price }}&#36;</td>
               <td>{{ (item.product.price * item.quantity).toFixed(2) }}&#36;</td>
-              <td><i class="pi pi-trash cursor-pointer" @click="bucketStore.deleteItem(item.product.id)"></i></td>
+              <td><i class="pi pi-trash cursor-pointer" @click="bucketStore.deleteItem(item.product.id)" style="color: red"></i></td>
             </tr>
             <tr>
               <td></td>
