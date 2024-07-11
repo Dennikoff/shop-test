@@ -13,7 +13,7 @@ import OverlayBadge from 'primevue/overlaybadge';
 import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 import Tooltip from 'primevue/tooltip';
-
+import Checkbox from 'primevue/checkbox';
 
 
 const app = createApp(App);
@@ -35,6 +35,10 @@ app.component("Button", Button)
 app.component("OverlayBadge", OverlayBadge)
 app.component("MultiSelect", MultiSelect)
 app.component("InputNumber", InputNumber)
-app.directive('tooltip', Tooltip);
+app.component("Checkbox", Checkbox)
+
+
+app.directive('tooltip', Tooltip)
+
 
 app.mount('#app');

@@ -9,7 +9,7 @@
         </li>
         <li class="nav-item">
           <RouterLink :to="{name: 'bucket'}">
-            <OverlayBadge :value="cartStore.size" severity="info">
+            <OverlayBadge :value="bucketStore.size" severity="info">
               <img src="@/assets/shopping.svg" class="logo">
             </OverlayBadge>
           </RouterLink>
@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore } from '@/store/Cart';
+import { useBucketStore } from '@/store/Bucket';
 import { RouterLink } from 'vue-router'
 
-const cartStore = useCartStore()
+const bucketStore = useBucketStore()
 </script>
 
 <style lang="scss" scoped>
