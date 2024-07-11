@@ -58,15 +58,12 @@ const filter = reactive<Filter>({
   selectedCats: props.cats,
 })
 
-const selectedOptions = ref()
-const minPrice = ref()
-const maxPrice = ref()
 
 
 function resetFilters() {
-  selectedOptions.value = []
-  minPrice.value = props.minPrice
-  maxPrice.value = props.maxPrice
+  filter.selectedCats = props.cats
+  filter.minPrice = props.minPrice
+  filter.maxPrice = props.maxPrice
   emit('apply')
 }
 
@@ -74,21 +71,16 @@ function applyFilters() {
   emit('apply', {...filter})
 }
 
-watch(() => minPrice.value, () => {
-  if(minPrice.value == undefined) {
-    minPrice.value = props.minPrice
+watch(() => filter.minPrice, () => {
+  if(filter.minPrice == undefined) {
+    filter.minPrice = props.minPrice
   }
 })
 
-watch(() => maxPrice.value, () => {
-  if(maxPrice.value == undefined) {
-    maxPrice.value = props.maxPrice
+watch(() => filter.maxPrice, () => {
+  if(filter.maxPrice == undefined) {
+    filter.maxPrice = props.maxPrice
   }
-})
-
-onMounted(() => {
-  minPrice.value = props.minPrice
-  maxPrice.value = props.maxPrice
 })
 
 
