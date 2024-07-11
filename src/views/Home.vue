@@ -22,6 +22,7 @@ await productStore.loadData()
 const filter = ref<Filter>()
 
 function applyFilter(filterValue: Filter) {
+  console.log(filterValue)
   filter.value = filterValue
 }
 

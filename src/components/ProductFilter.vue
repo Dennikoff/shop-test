@@ -5,7 +5,7 @@
       <h3>Категория</h3>
       <MultiSelect 
         class="multiselect mt-3"
-        v-model="selectedOptions" 
+        v-model="filter.selectedCats" 
         :options="props.cats" 
         :maxSelectedLabels="2"
         placeholder="Выбрать категорию"
@@ -19,7 +19,7 @@
               <span class="font-bold">Мин. цена </span> 
               ({{ props.minPrice }}) 
             </label>
-            <InputNumber v-model="minPrice" inputId="min-price" fluid :min="props.minPrice" :max="maxPrice"  />
+            <InputNumber v-model="filter.minPrice" inputId="min-price" fluid :min="props.minPrice" :max="filter.maxPrice"  />
           </div>
         </li>
         <li class="col max-price">
@@ -28,7 +28,7 @@
               <span class="font-bold">Макс. цена</span> 
               ({{ props.maxPrice }}) 
             </label>
-            <InputNumber v-model="maxPrice" inputId="max-price" fluid  :min="minPrice" :max="props.maxPrice"/>
+            <InputNumber v-model="filter.maxPrice" inputId="max-price" fluid  :min="filter.minPrice" :max="props.maxPrice"/>
           </div>
         </li>
       </ul>
@@ -41,7 +41,8 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, watch} from 'vue'
+import { Filter } from '@/interface/Filter';
+import {onMounted, reactive, ref, watch} from 'vue'
 
 const props = defineProps<{
   minPrice: number,
@@ -50,6 +51,12 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['apply'])
+
+const filter = reactive<Filter>({
+  minPrice: props.minPrice,
+  maxPrice: props.maxPrice,
+  selectedCats: props.cats,
+})
 
 const selectedOptions = ref()
 const minPrice = ref()
@@ -64,7 +71,7 @@ function resetFilters() {
 }
 
 function applyFilters() {
-  emit('apply', {minPrice: minPrice.value, maxPrice: maxPrice.value})
+  emit('apply', {...filter})
 }
 
 watch(() => minPrice.value, () => {

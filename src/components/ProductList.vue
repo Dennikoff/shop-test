@@ -23,6 +23,7 @@ const filtredList = computed(() => {
   if(props.filters) {
     // @ts-ignore
     tempList = tempList.filter((val) => val.price > props.filters.minPrice && val.price < props.filters.maxPrice)
+    tempList = tempList.filter((val) => props.filters?.selectedCats.includes(val.category))
   }
   
 
