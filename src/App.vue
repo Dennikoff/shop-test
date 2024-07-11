@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import Nav from '@/components/Nav.vue'
-
+import Nav from "@/components/Nav.vue";
 </script>
 
 <template>
-  <div>
-    <Nav/>
-    <RouterView/>
+  <Nav />
+  <div class="content">
+    <Suspense>
+      <RouterView />
+      <template #fallback> Loading... </template>
+    </Suspense>
   </div>
-  
 </template>
 
 <style scoped>
-
+.content {
+  flex: 1;
+}
 </style>
