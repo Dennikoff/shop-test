@@ -11,6 +11,7 @@
             <th style="width: 20%">Количество</th>
             <th style="width: 10%">Цена за ед.</th>
             <th style="width: 10%">Итого</th>
+            <th style="width: 5%"></th>
           </tr>
           <tr>
             <td></td>
@@ -32,11 +33,12 @@
                 <QuantityButtons
                   :quantity="item.quantity"
                   @add="bucketStore.add(item.product)"
-                  @remove="bucketStore.remove(item.product.id)"
+                  @remove="bucketStore.decrease(item.product.id)"
                 />
               </td>
               <td>{{ item.product.price }}&#36;</td>
               <td>{{ (item.product.price * item.quantity).toFixed(2) }}&#36;</td>
+              <td><i class="pi pi-trash cursor-pointer" @click="bucketStore.deleteItem(item.product.id)"></i></td>
             </tr>
             <tr>
               <td></td>

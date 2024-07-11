@@ -39,7 +39,7 @@ function addToBucket(product: Product) {
 }
 
 function removeFromBucket(product: Product) {
-  bucketStore.remove(product.id)
+  bucketStore.decrease(product.id)
 }
 </script>
 
