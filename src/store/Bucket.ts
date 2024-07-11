@@ -1,5 +1,5 @@
 import { Product } from "@/interface"
-import { Bucket } from "@/interface/Bucket"
+import { Bucket } from "@/interface"
 import { defineStore } from "pinia"
 import {  computed, ref } from "vue"
 

@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { emit } from 'process';
 
 const props = defineProps<{
   quantity: number

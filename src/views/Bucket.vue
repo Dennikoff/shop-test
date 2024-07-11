@@ -5,42 +5,59 @@
       <table class="bucket-table">
         <thead>
           <tr>
-            <th></th>
-            <th>№</th>
-            <th>Наименование товара</th>
-            <th>Количество</th>
-            <th>Цена за ед.</th>
-            <th>Итого</th>
+            <th style="width: 5%"></th>
+            <th style="width: 5%">№</th>
+            <th style="width: auto">Наименование товара</th>
+            <th style="width: 20%">Количество</th>
+            <th style="width: 10%">Цена за ед.</th>
+            <th style="width: 10%">Итого</th>
           </tr>
           <tr>
             <td></td>
             <td colspan="5">
-              <hr>
+              <hr />
             </td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><Checkbox/></td>
-            <td>1</td>
-            <td>Лыжи</td>
-            <td>2</td>
-            <td>500</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td colspan="5">
-              <hr>
-            </td>
-          </tr>
+          <template
+            v-for="(item, index) in bucketStore.bucket"
+            :key="item.product.id"
+          >
+            <tr>
+              <td><Checkbox v-model="item.selected" :binary="true" /></td>
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.product.title }}</td>
+              <td style="display: flex">
+                <QuantityButtons
+                  :quantity="item.quantity"
+                  @add="bucketStore.add(item.product)"
+                  @remove="bucketStore.remove(item.product.id)"
+                />
+              </td>
+              <td>{{ item.product.price }}&#36;</td>
+              <td>{{ (item.product.price * item.quantity).toFixed(2) }}&#36;</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="5">
+                <hr />
+              </td>
+            </tr>
+          </template>
         </tbody>
       </table>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useBucketStore } from "@/store";
+import QuantityButtons from "@/components/QuantityButtons.vue";
+
+
+const bucketStore = useBucketStore();
+</script>
 
 <style lang="scss" scoped>
 .bucket-container {
@@ -50,11 +67,14 @@
 .bucket-table {
   width: 100%;
   margin-top: 2rem;
+  table-layout: fixed;
 
   td {
     text-align: center;
     vertical-align: center;
+    overflow: hidden;
   }
+
   tbody hr {
     border-bottom: 0;
     width: 90%;
