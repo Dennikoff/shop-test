@@ -19,6 +19,7 @@
       @add="addToBucket(props.product)" 
       @remove="removeFromBucket(props.product)"
     />
+    <Test/>
   </div>
 </template>
 
