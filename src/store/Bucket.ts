@@ -5,6 +5,7 @@ import {  computed, ref } from "vue"
 
 
 export const useBucketStore = defineStore('bucket', () => {
+  
   const bucket = ref<Bucket[]>([])
   
   const size = computed(() => {
@@ -38,7 +39,7 @@ export const useBucketStore = defineStore('bucket', () => {
         val.quantity -= 1;
       }
       return val
-    }).filter((val) => val.quantity > 0)
+    })
     return bucket.value
   }
   

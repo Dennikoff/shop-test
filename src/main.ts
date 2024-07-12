@@ -14,7 +14,7 @@ import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 import Tooltip from 'primevue/tooltip';
 import Checkbox from 'primevue/checkbox';
-
+import ConfirmationService from 'primevue/confirmationservice';
 
 const app = createApp(App);
 const pinia = createPinia()
@@ -28,6 +28,7 @@ app.use(PrimeVue, {
   }
 })
 
+app.use(ConfirmationService);
 app.use(pinia)
 
 

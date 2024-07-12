@@ -1,5 +1,6 @@
 <template>
   <div class="card-container">
+
     <div class="card-image__container">
       <img :src="props.product.image" class="card-image" />
     </div>
@@ -17,9 +18,9 @@
       v-else  
       :quantity="bucketStore.getQuantity(props.product.id)"
       @add="addToBucket(props.product)" 
-      @remove="removeFromBucket(props.product)"
+      @decrease="decreaseItemInBucket(props.product)"
+      @delete="removeFromBucket(props.product)"
     />
-    <Test/>
   </div>
 </template>
 
@@ -27,8 +28,10 @@
 import type { Product } from "@/interface";
 import { useBucketStore } from "@/store/Bucket";
 import QuantityButtons from "@/components/QuantityButtons.vue";
+import { useBucketDeleting } from "@/composable/productDeleting";
 
 const bucketStore = useBucketStore()
+const deleteItem = useBucketDeleting()
 
 const props = defineProps<{
   product: Product;
@@ -38,8 +41,12 @@ function addToBucket(product: Product) {
   bucketStore.add(product)
 }
 
-function removeFromBucket(product: Product) {
+function decreaseItemInBucket(product: Product) {
   bucketStore.decrease(product.id)
+} 
+
+function removeFromBucket(product: Product) {
+  deleteItem(product.id)
 }
 </script>
 

@@ -33,12 +33,13 @@
                 <QuantityButtons
                   :quantity="item.quantity"
                   @add="bucketStore.add(item.product)"
-                  @remove="bucketStore.decrease(item.product.id)"
+                  @decrease="bucketStore.decrease(item.product.id)"
+                  @delete="deleteItem(item.product.id)"  
                 />
               </td>
               <td>{{ item.product.price }}&#36;</td>
               <td>{{ (item.product.price * item.quantity).toFixed(2) }}&#36;</td>
-              <td><i class="pi pi-trash cursor-pointer" @click="bucketStore.deleteItem(item.product.id)" style="color: red"></i></td>
+              <td><i class="pi pi-trash cursor-pointer" @click="deleteItem(item.product.id)" style="color: red"></i></td>
             </tr>
             <tr>
               <td></td>
@@ -56,7 +57,9 @@
 <script setup lang="ts">
 import { useBucketStore } from "@/store";
 import QuantityButtons from "@/components/QuantityButtons.vue";
+import { useBucketDeleting } from "@/composable/productDeleting";
 
+const deleteItem = useBucketDeleting()
 
 const bucketStore = useBucketStore();
 </script>
