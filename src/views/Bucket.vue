@@ -67,9 +67,9 @@
           <Button label="Оформить заказ" />
         </div>
       </template>
-      <div v-else class="empty-bucket">
+      <div v-else class="bucket-empty">
         <h1>Корзина пуста</h1>
-        <Button label="Вернуться к покупкам"/>
+        <Button class="mt-3" label="Вернуться к покупкам" @click="returnToMain()"/>
       </div>
     </div>
   </div>
@@ -79,10 +79,17 @@
 import { useBucketStore } from "@/store";
 import QuantityButtons from "@/components/QuantityButtons.vue";
 import { useBucketDeleting } from "@/composable/bucketDeleting";
+import { useRouter } from "vue-router";
 
 const deleteItem = useBucketDeleting();
-
+const router = useRouter();
 const bucketStore = useBucketStore();
+
+
+
+function returnToMain() {
+  router.push({name: 'home'})
+} 
 </script>
 
 <style lang="scss" scoped>
@@ -111,5 +118,13 @@ const bucketStore = useBucketStore();
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
+}
+
+.bucket-empty {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>

@@ -15,7 +15,4 @@ import ConfirmDialog from 'primevue/confirmdialog';
 </template>
 
 <style scoped>
-.content {
-  flex: 1;
-}
 </style>
