@@ -28,7 +28,7 @@
 import type { Product } from "@/interface";
 import { useBucketStore } from "@/store/Bucket";
 import QuantityButtons from "@/components/QuantityButtons.vue";
-import { useBucketDeleting } from "@/composable/productDeleting";
+import { useBucketDeleting } from "@/composable/bucketDeleting";
 
 const bucketStore = useBucketStore()
 const deleteItem = useBucketDeleting()

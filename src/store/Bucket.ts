@@ -12,6 +12,15 @@ export const useBucketStore = defineStore('bucket', () => {
     return bucket.value.length
   }) 
 
+  const price = computed(() => {
+    return bucket.value.reduce((sum, val) => {
+      if(val.selected) {
+        sum += val.product.price * val.quantity;
+      }
+      return sum
+    }, 0).toFixed(2)
+  })
+
   function add(product: Product) {
     let flagUnique = true
     bucket.value = bucket.value.map((val) => {
@@ -56,5 +65,5 @@ export const useBucketStore = defineStore('bucket', () => {
     return bucket.value.some((val) => val.product.id == id )
   }
 
-  return {bucket, add, decrease, deleteItem, getQuantity, includes, size}
+  return {bucket, add, decrease, deleteItem, getQuantity, includes, size, price}
 })
