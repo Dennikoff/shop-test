@@ -8,11 +8,14 @@
           </RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink :to="{name: 'bucket'}">
-            <OverlayBadge :value="bucketStore.size" severity="info">
-              <img src="@/assets/shopping.svg" class="logo">
-            </OverlayBadge>
-          </RouterLink>
+          <div class="buttons-container">
+            <RouterLink :to="{name: 'bucket'}">
+              <OverlayBadge :value="bucketStore.size" severity="info">
+                <img src="@/assets/shopping.svg" class="logo">
+              </OverlayBadge>
+            </RouterLink>
+            <img src="@/assets/user.svg" class="cursor-pointer">
+          </div>
         </li>
       </ul>
     </div>
@@ -43,5 +46,14 @@ const bucketStore = useBucketStore()
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 2rem;
+    img {
+      height:40px;
+    }
+
   }
 </style>

@@ -18,7 +18,9 @@ import Checkbox from 'primevue/checkbox';
 import ConfirmationService from 'primevue/confirmationservice';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
-
+import InputText from 'primevue/inputtext';
+import FloatLabel from 'primevue/floatlabel';
+import Password from 'primevue/password';
 
 const app = createApp(App);
 const pinia = createPinia()
@@ -32,9 +34,10 @@ app.use(PrimeVue, {
   }
 })
 
-app.use(ConfirmationService);
+
 app.use(pinia)
 app.use(ToastService);
+app.use(ConfirmationService);
 
 app.component("Button", Button)
 app.component("OverlayBadge", OverlayBadge)
@@ -42,6 +45,9 @@ app.component("MultiSelect", MultiSelect)
 app.component("InputNumber", InputNumber)
 app.component("Checkbox", Checkbox)
 app.component("Toast", Toast)
+app.component("InputText", InputText)
+app.component("FloatLabel", FloatLabel)
+app.component("Password", Password)
 
 
 app.directive('tooltip', Tooltip)

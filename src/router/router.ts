@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
 import Home from '@/views/Home.vue'
-import Bucket from '@/views/Bucket.vue'
+import { useAuthStore } from '@/store/Auth'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -14,7 +14,19 @@ export const router = createRouter({
     { 
       path: '/bucket', 
       name: 'bucket',
-      component: Bucket
+      component: () => import('@/views/Bucket.vue')
+    },
+    {
+      path: '/login',
+      name: 'auth.login',
+      component: () => import('@/views/Authorization.vue')
     },
   ],
+})
+
+
+
+router.afterEach(() => {
+  const authStore = useAuthStore()
+  
 })
