@@ -24,9 +24,27 @@ export const router = createRouter({
   ],
 })
 
+const publicPages = [
+  'auth.login'
+]
 
-
-router.afterEach(() => {
+router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
-  
+  const email = localStorage.getItem('email')
+  if(email) {
+    // is authorized
+    authStore.auth = true
+    if(typeof to.name === 'string' && publicPages.includes(to.name)) 
+      next({name: 'home'})
+    else {
+      next()
+    } 
+  } else {
+    authStore.auth = false
+    if(typeof to.name === 'string' && publicPages.includes(to.name)) 
+      next()
+    else {
+      next({name: 'auth.login'})
+    } 
+  }
 })

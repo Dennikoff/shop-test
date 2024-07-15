@@ -14,7 +14,7 @@
                 <img src="@/assets/shopping.svg" class="logo">
               </OverlayBadge>
             </RouterLink>
-            <img src="@/assets/user.svg" class="cursor-pointer">
+            <img src="@/assets/user.svg" class="cursor-pointer" @click="authStore.logout()">
           </div>
         </li>
       </ul>
@@ -23,9 +23,12 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from '@/store/Auth';
 import { useBucketStore } from '@/store/Bucket';
 import { RouterLink } from 'vue-router'
 
+
+const authStore = useAuthStore()
 const bucketStore = useBucketStore()
 </script>
 

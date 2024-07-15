@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 
+import { useAuthStore } from "@/store/Auth";
 import useVuelidate from "@vuelidate/core";
 import { email, minLength, required } from "@vuelidate/validators";
 import { useToast } from "primevue/usetoast";
@@ -39,16 +40,13 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 
 const form = reactive({ email: "" , password: "" });
-
+const authStore = useAuthStore()
 const toast = useToast();
 
 function submitForm() {
   
   vForm.value.$validate().then((validateFlag) => {
-    if (validateFlag){
-      localStorage.setItem('email', form.email)
-      router.push({name: 'home'})
-    }
+    if (validateFlag) authStore.login(form.email)
     else toast.add({ severity: "error", summary: "Ошибка валидации", detail: 'Исправьте ошибки', life: 2000 });
   })
     
