@@ -65,5 +65,10 @@ export const useBucketStore = defineStore('bucket', () => {
     return bucket.value.some((val) => val.product.id == id )
   }
 
-  return {bucket, add, decrease, deleteItem, getQuantity, includes, size, price}
+  function clear() {
+    bucket.value = []
+    return true
+  }
+
+  return {bucket, add, decrease, deleteItem, getQuantity, includes, clear, size, price}
 })

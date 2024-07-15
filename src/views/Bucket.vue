@@ -11,7 +11,7 @@
           class="mx-auto mt-5"
           label="Закрыть"
           severity="success"
-          @click="toast.removeGroup('bc')"
+          @click="toast.removeGroup('bc'); modalClose()"
         ></Button>
       </div>
     </template>
@@ -120,7 +120,7 @@ function showModal() {
 }
 
 function modalClose() {
-  console.log('close')
+  bucketStore.clear()
 }
 
 </script>
