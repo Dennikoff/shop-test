@@ -1,4 +1,22 @@
 <template>
+  
+  <Toast position="center" group="bc" @close="modalClose()">
+    <template #message="slotProps">
+      <div class="flex flex-column items-start flex-auto pl-4 pr-2 py-4 text-center">
+        <h3>{{ slotProps.message.summary }}</h3>
+        <div class="font-medium text-lg my-4">
+          {{ slotProps.message.detail }}
+        </div>
+        <Button
+          class="mx-auto mt-5"
+          label="Закрыть"
+          severity="success"
+          @click="toast.removeGroup('bc')"
+        ></Button>
+      </div>
+    </template>
+  </Toast>
+
   <div class="content-container">
     <div class="bucket-container">
       <template v-if="bucketStore.size > 0">
@@ -64,12 +82,16 @@
             Итого заказ на
             <span style="color: green">{{ bucketStore.price }} &#36;</span>
           </h2>
-          <Button label="Оформить заказ" />
+          <Button label="Оформить заказ" @click="showModal()"/>
         </div>
       </template>
       <div v-else class="bucket-empty">
         <h1>Корзина пуста</h1>
-        <Button class="mt-3" label="Вернуться к покупкам" @click="returnToMain()"/>
+        <Button
+          class="mt-3"
+          label="Вернуться к покупкам"
+          @click="returnToMain()"
+        />
       </div>
     </div>
   </div>
@@ -80,16 +102,27 @@ import { useBucketStore } from "@/store";
 import QuantityButtons from "@/components/QuantityButtons.vue";
 import { useBucketDeleting } from "@/composable/bucketDeleting";
 import { useRouter } from "vue-router";
+import { useToast } from "primevue/usetoast";
 
 const deleteItem = useBucketDeleting();
 const router = useRouter();
 const bucketStore = useBucketStore();
-
+const toast = useToast()
 
 
 function returnToMain() {
-  router.push({name: 'home'})
-} 
+  router.push({ name: "home" });
+}
+
+function showModal() {
+  toast.removeGroup('bc');  
+  toast.add({group: 'bc', summary: 'Заказ № 1', detail: 'Ваш заказ успешно оформлен', severity: 'secondary' })
+}
+
+function modalClose() {
+  console.log('close')
+}
+
 </script>
 
 <style lang="scss" scoped>

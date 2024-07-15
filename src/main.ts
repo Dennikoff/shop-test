@@ -8,6 +8,7 @@ import 'primeflex/primeflex.css'
 import { createPinia } from 'pinia';
 
 
+
 import Button from "primevue/button";
 import OverlayBadge from 'primevue/overlaybadge';
 import MultiSelect from 'primevue/multiselect';
@@ -15,6 +16,9 @@ import InputNumber from 'primevue/inputnumber';
 import Tooltip from 'primevue/tooltip';
 import Checkbox from 'primevue/checkbox';
 import ConfirmationService from 'primevue/confirmationservice';
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
+
 
 const app = createApp(App);
 const pinia = createPinia()
@@ -30,13 +34,14 @@ app.use(PrimeVue, {
 
 app.use(ConfirmationService);
 app.use(pinia)
-
+app.use(ToastService);
 
 app.component("Button", Button)
 app.component("OverlayBadge", OverlayBadge)
 app.component("MultiSelect", MultiSelect)
 app.component("InputNumber", InputNumber)
 app.component("Checkbox", Checkbox)
+app.component("Toast", Toast)
 
 
 app.directive('tooltip', Tooltip)

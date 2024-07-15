@@ -1,10 +1,5 @@
-<script setup lang="ts">
-import Nav from "@/components/Nav.vue";
-import ConfirmDialog from 'primevue/confirmdialog';
-</script>
-
 <template>
-  <Nav />
+  <Nav/>
   <ConfirmDialog></ConfirmDialog>
   <div class="content">
     <Suspense>
@@ -13,6 +8,11 @@ import ConfirmDialog from 'primevue/confirmdialog';
     </Suspense>
   </div>
 </template>
+
+<script setup lang="ts">
+import Nav from "@/components/Nav.vue";
+
+</script>
 
 <style scoped>
 </style>
