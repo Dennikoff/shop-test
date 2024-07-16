@@ -14,7 +14,8 @@
                 <img src="@/assets/shopping.svg" class="logo">
               </OverlayBadge>
             </RouterLink>
-            <img src="@/assets/user.svg" class="cursor-pointer" @click="authStore.logout()">
+            <img src="@/assets/user.svg" class="cursor-pointer" @click="toggle">
+            <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
           </div>
         </li>
       </ul>
@@ -25,11 +26,35 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/store/Auth';
 import { useBucketStore } from '@/store/Bucket';
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue';
+import { RouterLink, useRouter } from 'vue-router'
 
 
 const authStore = useAuthStore()
 const bucketStore = useBucketStore()
+const menu = ref();
+const router = useRouter()
+const items = ref([
+    {
+        label: String(localStorage.getItem('email')),
+        items: [
+            {
+                label: 'Выйти',
+                icon: 'pi pi-sign-out',
+                command: () => authStore.logout()
+            },
+            {
+                label: 'GitHub',
+                icon: 'pi pi-github',
+                command: () => window.open('https://github.com/Dennikoff/shop-test')
+            },
+        ]
+    }
+]);
+
+const toggle = (event: any) => {
+    menu.value.toggle(event);
+};
 </script>
 
 <style lang="scss" scoped>
