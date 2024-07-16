@@ -1,5 +1,6 @@
 <template>
   <div class="card-container">
+
     <div class="card-image__container">
       <img :src="props.product.image" class="card-image" />
     </div>
@@ -8,37 +9,44 @@
       {{ product.price }} &#36;
     </p>
     <Button 
-      v-if="!cartStore.includes(props.product.id)"
+      v-if="!bucketStore.includes(props.product.id)"
       label="Добавить в карзину" 
-      @click="() => addToCart(props.product)" 
+      @click="() => addToBucket(props.product)" 
       fluid
     />
-    <Button 
-      v-else
-      label="Убрать из корзины" 
-      @click="() => removeFromCart(props.product)" 
-      severity="danger"
-      fluid
+    <QuantityButtons 
+      v-else  
+      :quantity="bucketStore.getQuantity(props.product.id)"
+      @add="addToBucket(props.product)" 
+      @decrease="decreaseItemInBucket(props.product)"
+      @delete="removeFromBucket(props.product)"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Product } from "@/interface";
-import { useCartStore } from "@/store/Cart";
+import { useBucketStore } from "@/store/Bucket";
+import QuantityButtons from "@/components/QuantityButtons.vue";
+import { useBucketDeleting } from "@/composable/bucketDeleting";
 
-const cartStore = useCartStore()
+const bucketStore = useBucketStore()
+const deleteItem = useBucketDeleting()
 
 const props = defineProps<{
   product: Product;
 }>();
 
-function addToCart(product: Product) {
-  cartStore.add(product)
+function addToBucket(product: Product) {
+  bucketStore.add(product)
 }
 
-function removeFromCart(product: Product) {
-  cartStore.remove(product.id)
+function decreaseItemInBucket(product: Product) {
+  bucketStore.decrease(product.id)
+} 
+
+function removeFromBucket(product: Product) {
+  deleteItem(product.id)
 }
 </script>
 

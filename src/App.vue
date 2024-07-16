@@ -1,19 +1,23 @@
-<script setup lang="ts">
-import Nav from "@/components/Nav.vue";
-</script>
-
 <template>
-  <Nav />
-  <div class="content">
+  <ConfirmDialog></ConfirmDialog>
+  <Toast />
+  <template v-if="authStore.auth">
+    <Nav />
     <Suspense>
       <RouterView />
       <template #fallback> Loading... </template>
     </Suspense>
-  </div>
+  </template>
+  <RouterView v-else/>
+
 </template>
 
-<style scoped>
-.content {
-  flex: 1;
-}
-</style>
+<script setup lang="ts">
+import Nav from "@/components/Nav.vue";
+import ConfirmDialog from "primevue/confirmdialog";
+import { useAuthStore } from "./store/Auth";
+
+const authStore = useAuthStore();
+</script>
+
+<style scoped></style>

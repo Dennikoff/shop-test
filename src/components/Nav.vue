@@ -8,11 +8,14 @@
           </RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink :to="{name: 'bucket'}">
-            <OverlayBadge :value="cartStore.size" severity="info">
-              <img src="@/assets/shopping.svg" class="logo">
-            </OverlayBadge>
-          </RouterLink>
+          <div class="buttons-container">
+            <RouterLink :to="{name: 'bucket'}">
+              <OverlayBadge :value="bucketStore.size" severity="info">
+                <img src="@/assets/shopping.svg" class="logo">
+              </OverlayBadge>
+            </RouterLink>
+            <img src="@/assets/user.svg" class="cursor-pointer" @click="authStore.logout()">
+          </div>
         </li>
       </ul>
     </div>
@@ -20,10 +23,13 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore } from '@/store/Cart';
+import { useAuthStore } from '@/store/Auth';
+import { useBucketStore } from '@/store/Bucket';
 import { RouterLink } from 'vue-router'
 
-const cartStore = useCartStore()
+
+const authStore = useAuthStore()
+const bucketStore = useBucketStore()
 </script>
 
 <style lang="scss" scoped>
@@ -43,5 +49,14 @@ const cartStore = useCartStore()
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 2rem;
+    img {
+      height:40px;
+    }
+
   }
 </style>

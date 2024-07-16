@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-import Home from '@/views/Home.vue'
-import Bucket from '@/views/Bucket.vue'
+import { useAuthStore } from '@/store/Auth'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -9,12 +8,46 @@ export const router = createRouter({
     { 
       path: '/', 
       name: 'home',
-      component: Home 
+      component: () => import('@/views/Home.vue')
     },
     { 
       path: '/bucket', 
       name: 'bucket',
-      component: Bucket
+      component: () => import('@/views/Bucket.vue')
+    },
+    {
+      path: '/login',
+      name: 'auth.login',
+      component: () => import('@/views/Authorization.vue')
     },
   ],
+})
+
+const publicPages = [
+  'auth.login'
+]
+
+router.beforeEach((to, from, next) => {
+  const email = localStorage.getItem('email')
+  if(email) {
+    // is authorized
+    if(typeof to.name === 'string' && publicPages.includes(to.name)) 
+      next({name: 'home'})
+    else {
+      next()
+    } 
+  } else {
+    if(typeof to.name === 'string' && publicPages.includes(to.name)) {
+      next() 
+    }
+    else {
+      next({name: 'auth.login'})
+    } 
+  }
+})
+
+router.afterEach((to, from, next) => {
+  const authStore = useAuthStore()
+  const email = localStorage.getItem('email')
+  authStore.setAuth(Boolean(email))
 })
