@@ -4,7 +4,7 @@
   <template v-if="authStore.auth">
     <Nav />
     <Suspense>
-      <RouterView />
+      <RouterView class="content"/>
       <template #fallback> Loading... </template>
     </Suspense>
   </template>
@@ -20,4 +20,11 @@ import { useAuthStore } from "./store/Auth";
 const authStore = useAuthStore();
 </script>
 
-<style scoped></style>
+<style>
+#navigation {
+  flex: 0 0 auto;
+}
+.content {
+  flex: 1 1 100%;
+}
+</style>

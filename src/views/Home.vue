@@ -29,13 +29,14 @@ function applyFilter(filterValue: Filter) {
 
 <style lang="scss" scoped>
 
-.main-page {
-  height: 100%;
-}
 
 .filter-container {
   height: 100%;
   width: 40%;
   border-right: 1px solid $border-color;
+}
+
+.products-container {
+  overflow: auto;
 }
 </style>
