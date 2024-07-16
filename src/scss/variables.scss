@@ -1,5 +1,26 @@
-$border-color: #888;
-$nav-color: #c1a9a9;
-$card-background: #FFF;
-$body-background: #e7e7e7;
-$error-color: red;
+@media(prefers-color-scheme: dark) {
+	:root {
+		--border-color: #888;
+		--nav-color: #4e4949;
+		--card-background: #000000;
+		--body-background: #2b2b2b;
+		--error-color: red;
+	}
+}
+
+@media(prefers-color-scheme: light) {
+	:root {
+		--border-color: #888;
+		--nav-color: #c1a9a9;
+		--card-background: #FFF;
+		--body-background: #e7e7e7;
+		--error-color: red;
+	}
+}
+
+
+$border-color: var(--border-color);
+$nav-color: var(--nav-color);
+$card-background: var(--card-background);
+$body-background: var(--body-background);
+$error-color: var(--error-color);
