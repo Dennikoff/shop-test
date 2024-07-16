@@ -1,0 +1,51 @@
+@layer primevue {
+  .p-inputtext {
+    width: 100%;
+    border: 0;
+    height: 56px;
+    // color: $text-gray-color;
+    font-weight: 600;
+  }
+
+
+  .p-password {
+    width: 100%;
+    height: 56px;
+  }
+
+  .p-floatlabel input.p-filled~label,
+  .p-floatlabel input:focus~label,
+  .p-floatlabel .p-inputwrapper-filled~label,
+  .p-floatlabel .p-inputwrapper-focus~label {
+    top: 1rem !important;
+  }
+
+  .p-floatlabel > label {
+    left: 1rem !important;
+  }
+
+  .p-floatlabel {
+    
+    input {
+      padding: 1rem 1rem 0 !important;
+    }
+
+    .p-inputtext:disabled + label {
+      opacity: .6;
+    }
+
+    .p-disabled + label {
+      opacity: .6;
+    }
+
+    .p-dropdown-label {
+      padding: 1rem 1rem 0;
+    }
+
+    &>label {
+      left: 1rem;
+    }
+  }
+
+
+}
