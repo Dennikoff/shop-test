@@ -66,7 +66,8 @@ export const useBucketStore = defineStore('bucket', () => {
   }
 
   function clear() {
-    bucket.value = []
+    bucket.value = bucket.value.filter((val) => !val.selected)
+    console.log(bucket.value)
     return true
   }
 

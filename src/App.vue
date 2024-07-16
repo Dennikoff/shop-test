@@ -20,11 +20,6 @@ import { useAuthStore } from "./store/Auth";
 const authStore = useAuthStore();
 </script>
 
-<style>
-#navigation {
-  flex: 0 0 auto;
-}
-.content {
-  flex: 1 1 100%;
-}
+<style scoped>
+
 </style>

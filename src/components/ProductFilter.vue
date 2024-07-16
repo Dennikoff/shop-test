@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { Filter } from '@/interface/Filter';
-import {onMounted, reactive, ref, watch} from 'vue'
+import { reactive, watch} from 'vue'
 
 const props = defineProps<{
   minPrice: number,
