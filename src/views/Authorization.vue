@@ -4,7 +4,7 @@
     <form @submit.prevent="submitForm()" class="mt-7 flex flex-column gap-5">
       <div class="text-left relative">
         <FloatLabel>
-          <InputText id="email" v-model="form.email" />
+          <InputText id="email" v-model="form.email" :invalid="Boolean(vForm.email.$errors.length)"/>
           <label for="email">Почта</label>
         </FloatLabel>
         <small v-if="vForm.email.$errors.length" class="error">{{ vForm.email.$errors[0].$message }}</small>
@@ -16,6 +16,7 @@
             v-model="form.password"
             toggleMask
             :feedback="false"
+            :invalid="Boolean(vForm.password.$errors.length)"
           />
           <label for="password">Пароль</label>
         </FloatLabel>
