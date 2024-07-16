@@ -27,12 +27,13 @@
 import { useAuthStore } from '@/store/Auth';
 import { useBucketStore } from '@/store/Bucket';
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 
 
 const authStore = useAuthStore()
 const bucketStore = useBucketStore()
 const menu = ref();
+const router = useRouter()
 const items = ref([
     {
         label: String(localStorage.getItem('email')),
@@ -41,6 +42,11 @@ const items = ref([
                 label: 'Выйти',
                 icon: 'pi pi-sign-out',
                 command: () => authStore.logout()
+            },
+            {
+                label: 'GitHub',
+                icon: 'pi pi-github',
+                command: () => window.open('https://github.com/Dennikoff/shop-test')
             },
         ]
     }
