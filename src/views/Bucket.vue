@@ -121,6 +121,7 @@ function showModal() {
 
 function modalClose() {
   bucketStore.clear()
+  router.push({name: 'home'})
 }
 
 </script>

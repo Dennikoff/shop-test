@@ -1,20 +1,14 @@
 <template>
   <ConfirmDialog></ConfirmDialog>
-  <Toast/>
-
+  <Toast />
   <template v-if="authStore.auth">
     <Nav />
-    <div class="content">
-      <Suspense>
-        <RouterView />
-        <template #fallback> Loading... </template>
-      </Suspense>
-    </div>
+    <Suspense>
+      <RouterView />
+      <template #fallback> Loading... </template>
+    </Suspense>
   </template>
-  
-  <template v-else>
-    <RouterView />
-  </template>
+  <RouterView v-else/>
 
 </template>
 

@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-import Home from '@/views/Home.vue'
 import { useAuthStore } from '@/store/Auth'
 
 export const router = createRouter({
@@ -9,7 +8,7 @@ export const router = createRouter({
     { 
       path: '/', 
       name: 'home',
-      component: Home 
+      component: () => import('@/views/Home.vue')
     },
     { 
       path: '/bucket', 
@@ -29,22 +28,26 @@ const publicPages = [
 ]
 
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore()
   const email = localStorage.getItem('email')
   if(email) {
     // is authorized
-    authStore.auth = true
     if(typeof to.name === 'string' && publicPages.includes(to.name)) 
       next({name: 'home'})
     else {
       next()
     } 
   } else {
-    authStore.auth = false
-    if(typeof to.name === 'string' && publicPages.includes(to.name)) 
-      next()
+    if(typeof to.name === 'string' && publicPages.includes(to.name)) {
+      next() 
+    }
     else {
       next({name: 'auth.login'})
     } 
   }
+})
+
+router.afterEach((to, from, next) => {
+  const authStore = useAuthStore()
+  const email = localStorage.getItem('email')
+  authStore.setAuth(Boolean(email))
 })
