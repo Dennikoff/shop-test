@@ -22,4 +22,8 @@ const authStore = useAuthStore();
 
 <style scoped>
 
+.content {
+  height: calc(100% - 110px)
+}
+
 </style>
