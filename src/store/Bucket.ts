@@ -36,7 +36,7 @@ export const useBucketStore = defineStore('bucket', () => {
       bucket.value.push({
         product: product,
         quantity: 1,
-        selected: false,
+        selected: true,
       })
     }
     return bucket.value

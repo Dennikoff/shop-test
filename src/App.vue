@@ -16,14 +16,13 @@
 import Nav from "@/components/Nav.vue";
 import ConfirmDialog from "primevue/confirmdialog";
 import { useAuthStore } from "./store/Auth";
-
 const authStore = useAuthStore();
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .content {
-  height: calc(100% - 110px)
+  height: calc(100% - $nav-height)
 }
 
 </style>
