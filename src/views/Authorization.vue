@@ -36,9 +36,6 @@ import useVuelidate from "@vuelidate/core";
 import { email, minLength, required } from "@vuelidate/validators";
 import { useToast } from "primevue/usetoast";
 import { reactive } from "vue";
-import { useRouter } from "vue-router";
-
-const router = useRouter()
 
 const form = reactive({ email: "" , password: "" });
 const authStore = useAuthStore()

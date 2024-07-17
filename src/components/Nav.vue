@@ -27,13 +27,12 @@
 import { useAuthStore } from '@/store/Auth';
 import { useBucketStore } from '@/store/Bucket';
 import { ref } from 'vue';
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 
 const authStore = useAuthStore()
 const bucketStore = useBucketStore()
 const menu = ref();
-const router = useRouter()
 const items = ref([
     {
         label: String(localStorage.getItem('email')),
